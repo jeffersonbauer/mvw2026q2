@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Timeshare Competitive Intelligence — Q2 2026 · MVW vs. HGV & TNL</title>
+  <meta name="description" content="Executive timeshare competitive-intelligence dashboard for Q2 2026: Marriott Vacations Worldwide vs. Hilton Grand Vacations and Travel + Leisure. Source: Q2 2026 earnings releases, 10-Qs, and call transcripts." />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Crect width=%2716%27 height=%2716%27 fill=%27%231C1E35%27/%3E%3Crect x=%273%27 y=%279%27 width=%272.5%27 height=%274%27 fill=%27%230862A7%27/%3E%3Crect x=%276.75%27 y=%276%27 width=%272.5%27 height=%277%27 fill=%27%23002C51%27/%3E%3Crect x=%2710.5%27 y=%273%27 width=%272.5%27 height=%2710%27 fill=%27%231D6B44%27/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/main.css?v=2026-10-11a" />
+
+  <!-- Pre-warm DNS+TLS to the live-quote endpoints so the first fetch is fast -->
+  <link rel="preconnect" href="https://api.allorigins.win" crossorigin />
+  <link rel="dns-prefetch" href="https://query1.finance.yahoo.com" />
+
+  <!-- Leaflet (map) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="" />
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+
+  <!-- Chart.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- Data and app -->
+  <script defer src="js/data.js?v=2026-10-11a"></script>
+  <script defer src="js/charts.js?v=2026-10-11a"></script>
+  <script defer src="js/views.js?v=2026-10-11a"></script>
+  <script defer src="js/app.js?v=2026-10-11a"></script>
+  <script defer src="js/quotes.js?v=2026-10-11a"></script>
+</head>
+<body>
+  <div class="app-shell">
+
+    <header class="topbar">
+      <div class="topbar__brand" data-route="#/">
+        <div>
+          <div class="topbar__title">Timeshare Competitive Intelligence</div>
+          <div class="topbar__subtitle">Timeshare Industry · Q2 2026 Earnings Snapshot</div>
+        </div>
+      </div>
+
+      <nav class="topbar__nav" id="primary-nav">
+        <button class="nav-pill" data-route="#/">Overview</button>
+        <div class="nav-pill-stack">
+          <button class="nav-pill" data-route="#/company/mvw/exec">
+            <span class="swatch" style="background:#0862A7"></span>MVW
+          </button>
+          <div class="ticker-quote" data-symbol="VAC">
+            <span class="ticker-price" data-placeholder="1">—.—</span>
+            <span class="ticker-change is-neutral">—</span>
+          </div>
+        </div>
+        <div class="nav-pill-stack">
+          <button class="nav-pill" data-route="#/company/hgv/exec">
+            <span class="swatch" style="background:#002C51"></span>HGV
+          </button>
+          <div class="ticker-quote" data-symbol="HGV">
+            <span class="ticker-price" data-placeholder="1">—.—</span>
+            <span class="ticker-change is-neutral">—</span>
+          </div>
+        </div>
+        <div class="nav-pill-stack">
+          <button class="nav-pill" data-route="#/company/tnl/exec">
+            <span class="swatch" style="background:#1D6B44"></span>TNL
+          </button>
+          <div class="ticker-quote" data-symbol="TNL">
+            <span class="ticker-price" data-placeholder="1">—.—</span>
+            <span class="ticker-change is-neutral">—</span>
+          </div>
+        </div>
+      </nav>
+
+      <div class="topbar__meta">
+        <div>Q2 2026 Earnings</div>
+        <div>Updated 2026-10-11</div>
+        <a class="topbar__archive-link" href="https://jeffersonbauer.github.io/mvw2026q1/#/" target="_blank" rel="noopener" title="Open the Q1 2026 competitive dashboard in a new tab">
+          ← Q1 2026 Comparison
+        </a>
+        <a class="topbar__archive-link" href="https://jeffersonbauer.github.io/mvw/#/" target="_blank" rel="noopener" title="Open the FY2025 (2025 YE) competitive dashboard in a new tab">
+          ← FY2025 YE Comparison
+        </a>
+      </div>
+    </header>
+
+    <main class="shell" id="app-root">
+      <div class="splash">Loading dashboard…</div>
+    </main>
+
+    <footer class="footer">
+      <div>
+        Data sourced from <strong>Q2 2026 earnings releases, 10-Q filings, and earnings-call transcripts</strong>
+        for Marriott Vacations Worldwide (NYSE: VAC, Aug 6, 2026), Hilton Grand Vacations (NYSE: HGV, Jul 30, 2026), and Travel + Leisure Co. (NYSE: TNL, Jul 22, 2026).
+      </div>
+      <div class="muted" style="margin-top:6px;">
+        No projections, estimates, or fabricated figures. Risk-matrix severity / likelihood scores are analyst-coded overlays — not company disclosures. See per-company Sources block for primary URLs.
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
