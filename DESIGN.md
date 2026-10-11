@@ -97,7 +97,7 @@ All fonts loaded from Google Fonts in `css/main.css`.
 - **Theme switching** — `body.theme-mvw|hgv|tnl` rebinds `--brand-primary`.
 - **Hover tooltips** — `[data-source]` elements show the source citation on hover. Scorecard cells, KPI cards, and guidance rows carry it; "—" cells carry the not-disclosed note.
 - **Risk-dot click-to-scroll** — clicking a numbered heat-map dot scrolls to the verbatim risk block.
-- **Map markers** — Leaflet `circleMarker` sized by resort count or VOI-sales share, colored by brand.
+- **Map markers** — Leaflet `circleMarker` sized by resort count or VOI-sales share, colored by brand. Basemap: Esri World Light Gray Canvas (muted gray, no labels competing with brand markers; replaced CARTO light on 2026-10-11).
 - **Charts always destroy on route change** — `MVW_CHARTS.destroyAll()` before each render.
 
 ## Iconography

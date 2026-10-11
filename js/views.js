@@ -738,10 +738,12 @@ window.MVW_VIEWS = (() => {
       worldCopyJump: true,
       scrollWheelZoom: false
     });
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: "abcd",
-      maxZoom: 19
+    // Esri World Light Gray Canvas — free, no API key. CARTO's public
+    // basemaps began watermarking tiles "API KEY REQUIRED" for third-party
+    // sites in Oct 2026 (see DECISIONS.md 2026-10-11).
+    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+      attribution: 'Tiles &copy; <a href="https://www.esri.com/">Esri</a> &mdash; Esri, HERE, Garmin, FAO, NOAA, USGS, &copy; OpenStreetMap contributors',
+      maxZoom: 16
     }).addTo(map);
 
     const color = co.brandAccent || co.brandColor;

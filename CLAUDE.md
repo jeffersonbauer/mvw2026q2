@@ -67,7 +67,7 @@ There are **three governance files** in the repo root. Treat them as the project
 
 - **No build step.** Plain HTML, CSS, vanilla JS. Open `index.html` in a browser or serve with `python3 -m http.server`.
 - **Charts:** Chart.js via CDN.
-- **Maps:** Leaflet via CDN with OpenStreetMap (CARTO light) tiles.
+- **Maps:** Leaflet via CDN with Esri World Light Gray Canvas tiles (no API key).
 - **Styling:** Custom CSS — no Tailwind, no preprocessors. Design tokens live as CSS custom properties in `css/main.css`.
 - **Data:** All facts live in `js/data.js`. One module, one global (`window.MVW_DATA`). Per-company shape is documented at the top of that file.
 

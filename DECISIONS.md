@@ -9,7 +9,7 @@ Append a dated bullet whenever architecture, data shape, file structure, framewo
 - **Static SPA, no build step.** HTML + CSS + vanilla JS served as static files; deploy target is GitHub Pages. Same approach as `jeffersonbauer/mvw2026q1` (Q1 2026) and `jeffersonbauer/mvw` (FY2025). Rationale unchanged: zero deployment friction, instant local preview, reliably refreshable each quarter.
 - **Hash-based router.** Routes are `#/` (overview) and `#/company/<slug>/<tab>` (company drill-down). Six tabs per company: `exec`, `segments`, `footprint`, `financials`, `growth`, `risks`. Unchanged from Q1.
 - **Data file shape: one global, one source-of-truth.** All data lives on `window.MVW_DATA` in `js/data.js`. Quarterly metrics live in `q2Headline.*` with `priorQ` for the Q2 2025 comparative, `*FY` for FY2025 anchors, and `*Ytd` for first-half 2026 figures.
-- **Charts library: Chart.js 4.4.1 via CDN. Map library: Leaflet 1.9.4 + CARTO light tiles via CDN. Fonts: Montserrat + Lato + JetBrains Mono.** Unchanged.
+- **Charts library: Chart.js 4.4.1 via CDN. Map library: Leaflet 1.9.4 via CDN. Fonts: Montserrat + Lato + JetBrains Mono.** Unchanged. Basemap tiles changed — see below.
 - **No analytics, no telemetry, no cookies.** Unchanged.
 
 ## 2026-10-11 — Period-specific copy moved out of the view layer (data-driven overview)
@@ -50,8 +50,14 @@ Append a dated bullet whenever architecture, data shape, file structure, framewo
 - Inherited from Q1: Yahoo Finance `v7/finance/spark` batched endpoint, raced across public CORS proxies via `Promise.any`, 60s refresh, `sessionStorage` hydration (cache prefix now `mvw_q2_quote_`).
 - As of 2026-10-11, `corsproxy.io` returns HTTP 403 without an API key and `api.allorigins.win/raw` responds without an `Access-Control-Allow-Origin` header, so the Q1 proxy list fails in the browser. The Q2 module adds **`api.allorigins.win/get`** (JSON-wrapped body in `.contents`, with CORS headers) as the primary racer, keeps `/raw` as a fallback, and drops corsproxy.io. Each proxy entry is now `{ build, unwrap }`. If all proxies fail the slot shows `—`; the rest of the dashboard is unaffected.
 
+## 2026-10-11 — Map basemap switched from CARTO to Esri Light Gray Canvas
+
+- The Q1/FY2025 editions used CARTO `light_all` tiles. On 2026-10-11 the live site rendered CARTO tiles watermarked "API KEY REQUIRED — carto.com/basemaps/apikey" (CARTO now gates its public basemaps by referer / key; direct curl still returns 200, so the gate is browser-side). Switched `afterFootprint()` to Esri's World Light Gray Canvas (`server.arcgisonline.com/.../Canvas/World_Light_Gray_Base`), which is free, key-less, and visually close to the CARTO light look. maxZoom 16. Attribution updated per Esri terms.
+- The Q1 2026 and FY2025 dashboards still point at CARTO and will show the same watermark until patched the same way.
+
 ## Changelog
 - 2026-10-11: Q2 2026 edition created from the Q1 2026 repo; data refreshed to Q2 2026 releases / 10-Qs / transcripts for all three companies.
 - 2026-10-11: Overview copy, transcript quotes, guidance rows, capital actions made data-driven; period labels centralized.
 - 2026-10-11: Added guidance/initiative status pills, quarterly contract-sales chart, transcript quotes for HGV and TNL.
 - 2026-10-11: Market cap now uses disclosed diluted shares; live-quote proxy list updated.
+- 2026-10-11: Footprint basemap switched to Esri World Light Gray Canvas after CARTO began requiring an API key.

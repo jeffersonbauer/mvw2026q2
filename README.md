@@ -42,7 +42,7 @@ Same layout, tabs, fonts and styling as the Q1 edition; the topbar links back to
 ## Tech stack
 
 - **Static files only** — HTML / CSS / vanilla JS, no build step.
-- Chart.js 4.4.1 (CDN), Leaflet 1.9.4 + CARTO light tiles (CDN).
+- Chart.js 4.4.1 (CDN), Leaflet 1.9.4 + Esri World Light Gray Canvas tiles (no API key).
 - Google Fonts: Montserrat, Lato, JetBrains Mono.
 - Live topbar stock quotes: Yahoo Finance via public CORS proxy (the only networked data point).
 
