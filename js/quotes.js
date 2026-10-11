@@ -162,9 +162,19 @@ window.MVW_QUOTES = (() => {
   async function boot() {
     // 1. Instant render of cached values (zero network latency)
     hydrateFromCache();
-    // 2. Apply the in-flight initial fetch when it resolves
+    // 2. Apply the in-flight initial fetch when it resolves. The public
+    //    proxies are intermittent, so if the first attempt fails retry on a
+    //    short backoff (5s / 15s / 30s) instead of waiting for the 60s tick.
     const quotes = await initialFetchPromise;
-    applyQuotes(quotes);
+    if (!applyQuotes(quotes)) {
+      for (const delay of [5_000, 15_000, 30_000]) {
+        await new Promise((res) => setTimeout(res, delay));
+        if (document.hidden) continue;
+        let ok = false;
+        try { ok = applyQuotes(await fetchAll()); } catch (e) { ok = false; }
+        if (ok) break;
+      }
+    }
     // 3. Recurring refresh (visibility-aware)
     if (timerId) clearInterval(timerId);
     timerId = setInterval(() => { if (!document.hidden) refresh(); }, REFRESH_MS);

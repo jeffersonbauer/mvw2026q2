@@ -48,7 +48,7 @@ Append a dated bullet whenever architecture, data shape, file structure, framewo
 ## 2026-10-11 — Live stock-quote proxy update
 
 - Inherited from Q1: Yahoo Finance `v7/finance/spark` batched endpoint, raced across public CORS proxies via `Promise.any`, 60s refresh, `sessionStorage` hydration (cache prefix now `mvw_q2_quote_`).
-- As of 2026-10-11, `corsproxy.io` returns HTTP 403 without an API key and `api.allorigins.win/raw` responds without an `Access-Control-Allow-Origin` header, so the Q1 proxy list fails in the browser. The Q2 module adds **`api.allorigins.win/get`** (JSON-wrapped body in `.contents`, with CORS headers) as the primary racer, keeps `/raw` as a fallback, and drops corsproxy.io. Each proxy entry is now `{ build, unwrap }`. If all proxies fail the slot shows `—`; the rest of the dashboard is unaffected.
+- As of 2026-10-11, `corsproxy.io` returns HTTP 403 without an API key and `api.allorigins.win/raw` responds without an `Access-Control-Allow-Origin` header, so the Q1 proxy list fails in the browser. The Q2 module adds **`api.allorigins.win/get`** (JSON-wrapped body in `.contents`, with CORS headers) as the primary racer, keeps `/raw` as a fallback, and drops corsproxy.io. Each proxy entry is now `{ build, unwrap }`. If the first fetch fails, `boot()` retries on a 5s / 15s / 30s backoff before falling back to the 60s cadence (allorigins is intermittent — roughly one in three requests timed out in testing). If all proxies fail the slot shows `—`; the rest of the dashboard is unaffected.
 
 ## 2026-10-11 — Map basemap switched from CARTO to Esri Light Gray Canvas
 
